@@ -7,6 +7,7 @@ import urllib3
 
 import numpy as np
 from PIL import Image
+from imgcat import imgcat
 import paddle
 from paddle.vision import transforms
 from model.model_fusion import DeitBase
@@ -80,6 +81,11 @@ def process_image(args):
     u3_pool = urllib3.PoolManager(timeout=10)
     img_pil1 = download_image_as_pillow_obj(u3_pool, url1)
     img_pil2 = download_image_as_pillow_obj(u3_pool, url2)
+
+    img_show = Image.new("RGB", (1050, 500))
+    img_show.paste(img_pil1.resize((500, 500)), (0, 0))
+    img_show.paste(img_pil2.resize((500, 500)), (550, 0))
+    imgcat(img_show)
 
     fea_vec1 = run_inference(model, img_pil1)
     fea_vec2 = run_inference(model, img_pil2)
