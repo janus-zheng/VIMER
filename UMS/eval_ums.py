@@ -106,7 +106,7 @@ parser.add_argument(
     help="model type.(VL or DRL)",
 )
 
-####### Main Parameter: Dataset to use for Training
+# Main Parameter: Dataset to use for Training
 parser.add_argument(
     "--dataset",
     default="Stanford_Online_Products",
@@ -119,7 +119,7 @@ parser.add_argument(
         "CTC",
     ],
 )
-### General Training Parameters
+# General Training Parameters
 parser.add_argument(
     "--n_epochs", default=400, type=int, help="Number of training epochs."
 )
@@ -139,11 +139,11 @@ parser.add_argument(
     type=int,
     help="only compute evaluation metrics every 10 epochs",
 )
-##### Evaluation Settings
+# Evaluation Settings
 parser.add_argument(
     "--k_vals", nargs="+", default=[1, 2, 4, 8], type=int, help="Recall @ Values."
 )
-##### Network parameters
+# Network parameters
 parser.add_argument(
     "--embed_dim", default=512, type=int, help="Embedding dimensionality of the network"
 )
@@ -163,9 +163,9 @@ parser.add_argument(
     action="store_true",
     help="If added, the ratio between intra- and interclass distances is stored after each epoch.",
 )
-##### Setup Parameters
+# Setup Parameters
 parser.add_argument("--gpu", default="0", type=str, help="GPU-id for GPU to use.")
-### Paths to datasets and storage folder
+# Paths to datasets and storage folder
 parser.add_argument(
     "--source_path",
     default=".",
@@ -350,7 +350,10 @@ def main():
         os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
         os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu)
 
-        paddle.set_device("gpu")
+        if args.gpu == "-1":
+            paddle.set_device("cpu")
+        else:
+            paddle.set_device("gpu")
         model = networkselect(args)
 
         dataloaders = give_dataloaders(args.dataset, args)

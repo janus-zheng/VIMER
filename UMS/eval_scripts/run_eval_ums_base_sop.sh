@@ -1,11 +1,12 @@
- python3 eval_ums.py \
-  --model_type 'DRL' \
-  --bs 384 \
-  --infrequent_eval 1 \
-  --n_epochs 1 \
-  --arch vit-deit-base \
-  --gpu '0' \
-  --dataset 'Stanford_Online_Products' \
-  --infer_model './ums_sop.pdparams' \
-  --embed_dim 768 \
-  --eval 
+python3 eval_ums.py \
+    --model_type 'DRL' \
+    --bs 384 \
+    --infrequent_eval 1 \
+    --n_epochs 1 \
+    --arch vit-deit-base \
+    --gpu '-1' \
+    --dataset 'Stanford_Online_Products' \
+    --infer_model './ums_sop.pdparams' \
+    --embed_dim 128 \
+    --eval \
+    --source_path '/Users/lilei/Documents/5_image_feature_representation/0_datasets/'

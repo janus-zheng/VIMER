@@ -1,0 +1,17 @@
+.DS_Store
+.vscode
+__pycache__
+*.onnx
+*.pdiparams
+*.pdiparams.info
+*.pdmodel
+
+*.png
+*.PNG
+*.jpg
+*.JPG
+*.jpeg
+*.JPEG
+*.zip
+*.tar
+*.tar.gz

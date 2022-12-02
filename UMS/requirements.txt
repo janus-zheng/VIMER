@@ -1,5 +1,5 @@
 numpy
 Pillow
-glob
+opencv-python
 matplotlib
 faiss-cpu
