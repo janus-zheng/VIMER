@@ -1,6 +1,8 @@
 ''' autodocstring '''
+import time
 import argparse
 
+import numpy as np
 from PIL import Image
 import paddle
 from paddle.vision import transforms
@@ -36,9 +38,13 @@ def process_image(args):
     img = Image.open(args.input_image)
     img_tensor = transform(img).unsqueeze(axis=0)
     print(img_tensor.shape)
+
+    since = time.time()
     fea_vec = model(img_tensor)
+    print(f"inference time: {time.time() - since:.4f} seconds")
     print(fea_vec.shape)
-    print(fea_vec)
+    # print(fea_vec)
+    print(np.linalg.norm(fea_vec))
     return 0
 
 
